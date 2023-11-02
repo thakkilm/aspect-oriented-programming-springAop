@@ -17,8 +17,8 @@ public class BusinessService1 {
 
 	 public int claculateMax() {
 		 int[] data=dataService1.retrieveData();
-//		 return Arrays.stream(data).max().orElse(0);
-		 throw new RuntimeException("Created an exception");
+		 return Arrays.stream(data).max().orElse(0);
+//		 throw new RuntimeException("Created an exception");
 	 }
 	
 	

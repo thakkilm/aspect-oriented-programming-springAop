@@ -2,6 +2,7 @@ package com.mahesh.learnspringaop.aopexample.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -36,5 +37,11 @@ public class LoggingAspect {
 		logger.info("AfterThrowing Aspect -{} method exception {}", joinPoint,exception);
 	}
 	
+//	Executed after the method is successfully executed or throwed any exception. It returns the return value of any methods specified in the package classes
+	@AfterReturning(pointcut = "execution(* com.mahesh.learnspringaop.*.*.*.*(..))",
+			returning = "result")
+	public void logMethodCallAfterThrowingException(JoinPoint joinPoint,Object result) {
+		logger.info("@AfterReturning Aspect -{} method retuen Values {}", joinPoint,result);
+	}
 	
 }
