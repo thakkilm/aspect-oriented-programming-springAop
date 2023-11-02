@@ -2,6 +2,7 @@ package com.mahesh.learnspringaop.aopexample.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -26,5 +27,14 @@ public class LoggingAspect {
 	public void logMethodCallAfterExecution(JoinPoint joinPoint) {
 		logger.info("After Aspect -{} method argumenmts {}", joinPoint,joinPoint.getArgs());
 	}
+	
+	
+//	Executed after the throwed any exception. Executes this method twice before and after the execution of the exception method
+	@AfterThrowing(pointcut = "execution(* com.mahesh.learnspringaop.*.*.*.*(..))",
+			throwing = "exception")
+	public void logMethodCallAfterThrowingException(JoinPoint joinPoint,Exception exception) {
+		logger.info("AfterThrowing Aspect -{} method exception {}", joinPoint,exception);
+	}
+	
 	
 }
